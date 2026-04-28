@@ -40,7 +40,7 @@ export default function HomePage() {
       {/* Buyer / Seller */}
       <section className="py-28" style={{ background: '#0A0A0A' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-reveal>
             <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>YOUR JOURNEY STARTS HERE</p>
             <h2 className="section-title">How Can I Help You?</h2>
           </div>
@@ -78,7 +78,7 @@ export default function HomePage() {
       {/* Tools */}
       <section className="py-28" style={{ background: '#080808' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-reveal>
             <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>RESOURCES</p>
             <h2 className="section-title">Tools & Insights</h2>
           </div>
@@ -113,7 +113,7 @@ export default function HomePage() {
             { value: '5+', label: 'Years Experience' },
             { value: '$50M+', label: 'In Transactions' },
           ].map(({ value, label }) => (
-            <div key={label}>
+            <div key={label} data-reveal>
               <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.8rem', color: '#C9A84C', fontWeight: 300, letterSpacing: '0.05em' }}>{value}</p>
               <div className="gold-line mx-auto my-2" />
               <p style={{ color: '#555', fontSize: '0.6rem', letterSpacing: '0.25em', fontWeight: 400 }}>{label.toUpperCase()}</p>
@@ -128,7 +128,7 @@ export default function HomePage() {
       <section className="py-28 text-center relative overflow-hidden" style={{ background: '#080808' }}>
         <div className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
-        <div className="relative z-10 max-w-2xl mx-auto px-6">
+        <div className="relative z-10 max-w-2xl mx-auto px-6" data-reveal>
           <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1.5rem' }}>BEGIN YOUR JOURNEY</p>
           <h2 className="section-title mb-6">Ready to Find Your Dream Home?</h2>
           <div className="gold-line mx-auto mb-8" />

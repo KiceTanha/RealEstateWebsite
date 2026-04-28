@@ -4,6 +4,7 @@ import './globals.css';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from 'react-hot-toast';
+import { ScrollRevealInit } from '@/components/ScrollRevealInit';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
       <body className="bg-white text-gray-900">
         <Toaster position="top-right" />
+        <ScrollRevealInit />
         <Navbar />
         <main>{children}</main>
         <Footer />
