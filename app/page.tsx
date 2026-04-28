@@ -6,15 +6,21 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-        </video>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <iframe
+            src="https://www.youtube.com/embed/KbEdnRTbnwc?autoplay=1&mute=1&loop=1&playlist=KbEdnRTbnwc&controls=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0"
+            title="Hero background video"
+            allow="autoplay; encrypted-media"
+            tabIndex={-1}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none border-0"
+            style={{
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100vh',
+              minWidth: '177.78vh',
+            }}
+          />
+        </div>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%)' }} />
 
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
