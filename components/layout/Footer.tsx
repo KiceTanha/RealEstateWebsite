@@ -3,42 +3,74 @@ import { Instagram, Facebook, Linkedin, Phone, Mail, MapPin } from 'lucide-react
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f0f1a] text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer style={{ background: '#080808', borderTop: '1px solid #2A2A2A' }}>
+      <div className="gold-divider" />
+      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <h3 className="font-serif text-2xl font-bold text-yellow-400 mb-3">KiceTanha Realty</h3>
-          <p className="text-sm text-gray-400 mb-4 max-w-sm">
-            Your trusted Calgary real estate expert. Helping buyers and sellers navigate the market with confidence.
+          <div className="mb-6">
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', color: '#C9A84C', fontSize: '1.6rem', letterSpacing: '0.15em', fontWeight: 300 }}>
+              KICE TANHA
+            </p>
+            <p style={{ fontFamily: 'Montserrat', color: '#555', fontSize: '0.55rem', letterSpacing: '0.35em' }}>
+              CALGARY REAL ESTATE
+            </p>
+          </div>
+          <p style={{ color: '#666', fontSize: '0.8rem', lineHeight: '1.8', maxWidth: '320px', fontWeight: 300 }}>
+            Exceptional real estate experiences for discerning buyers and sellers in Calgary's finest communities.
           </p>
-          <div className="flex gap-4">
-            <a href={process.env.NEXT_PUBLIC_INSTAGRAM || '#'} target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-yellow-400 transition-colors"><Instagram size={20} /></a>
-            <a href={process.env.NEXT_PUBLIC_FACEBOOK || '#'} target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-yellow-400 transition-colors"><Facebook size={20} /></a>
-            <a href={process.env.NEXT_PUBLIC_LINKEDIN || '#'} target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-yellow-400 transition-colors"><Linkedin size={20} /></a>
+          <div className="flex gap-5 mt-6">
+            {[
+              { href: process.env.NEXT_PUBLIC_INSTAGRAM || '#', Icon: Instagram },
+              { href: process.env.NEXT_PUBLIC_FACEBOOK || '#', Icon: Facebook },
+              { href: process.env.NEXT_PUBLIC_LINKEDIN || '#', Icon: Linkedin },
+            ].map(({ href, Icon }) => (
+              <a key={href} href={href} target="_blank" rel="noopener noreferrer"
+                style={{ color: '#444', border: '1px solid #2A2A2A', padding: '8px' }}
+                className="hover:border-yellow-600 hover:text-yellow-500 transition-all">
+                <Icon size={14} />
+              </a>
+            ))}
           </div>
         </div>
+
         <div>
-          <h4 className="font-semibold text-white mb-3">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            {[['/', 'Home'], ['/listings', 'Listings'], ['/calculator', 'Mortgage Calculator'],
-              ['/community', 'Communities'], ['/about', 'About Me'], ['/book-a-call', 'Book a Call']].map(([href, label]) => (
-              <li key={href}><Link href={href} className="hover:text-yellow-400 transition-colors">{label}</Link></li>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.25em', color: '#C9A84C', marginBottom: '1.5rem' }}>
+            NAVIGATION
+          </p>
+          <ul className="space-y-3">
+            {[['/', 'Home'], ['/listings', 'Listings'], ['/calculator', 'Calculator'],
+              ['/community', 'Communities'], ['/about', 'About'], ['/book-a-call', 'Book a Call']].map(([href, label]) => (
+              <li key={href}>
+                <Link href={href} style={{ color: '#666', fontSize: '0.75rem', letterSpacing: '0.1em' }}
+                  className="hover:text-yellow-500 transition-colors">
+                  {label}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
+
         <div>
-          <h4 className="font-semibold text-white mb-3">Contact</h4>
-          <ul className="space-y-3 text-sm">
-            <li className="flex gap-2 items-center"><Phone size={14} className="text-yellow-400" /> +1 (403) 000-0000</li>
-            <li className="flex gap-2 items-center"><Mail size={14} className="text-yellow-400" /> kice@kicetanha.com</li>
-            <li className="flex gap-2 items-start"><MapPin size={14} className="text-yellow-400 mt-1" /> Calgary, Alberta, Canada</li>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.25em', color: '#C9A84C', marginBottom: '1.5rem' }}>
+            CONTACT
+          </p>
+          <ul className="space-y-4">
+            {[
+              { Icon: Phone, text: '+1 (403) 000-0000' },
+              { Icon: Mail, text: 'kice@kicetanha.com' },
+              { Icon: MapPin, text: 'Calgary, Alberta' },
+            ].map(({ Icon, text }) => (
+              <li key={text} className="flex gap-3 items-center">
+                <Icon size={12} style={{ color: '#C9A84C' }} />
+                <span style={{ color: '#666', fontSize: '0.75rem' }}>{text}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
-      <div className="border-t border-gray-800 text-center py-4 text-xs text-gray-600">
-        © {new Date().getFullYear()} KiceTanha Realty. All rights reserved.
+      <div className="gold-divider" />
+      <div className="text-center py-6" style={{ color: '#333', fontSize: '0.65rem', letterSpacing: '0.15em' }}>
+        © {new Date().getFullYear()} KICE TANHA REAL ESTATE — ALL RIGHTS RESERVED
       </div>
     </footer>
   );

@@ -13,7 +13,7 @@ export default function ContactPage() {
     try {
       const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       if (res.ok) {
-        toast.success('Message sent! I will be in touch soon.');
+        toast.success('Message received. I will be in touch shortly.');
         setForm({ name: '', email: '', phone: '', message: '', type: 'general' });
       } else {
         toast.error('Something went wrong. Please try again.');
@@ -25,50 +25,67 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-16 min-h-screen bg-gray-50">
-      <div className="bg-[#0f0f1a] text-white py-14 px-4 text-center">
-        <h1 className="font-serif text-4xl font-bold mb-2">Get in Touch</h1>
-        <p className="text-gray-400">I would love to hear from you</p>
+    <div className="pt-24 min-h-screen" style={{ background: '#0A0A0A' }}>
+      <div className="py-20 px-6 text-center" style={{ borderBottom: '1px solid #2A2A2A' }}>
+        <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>GET IN TOUCH</p>
+        <h1 className="section-title">Contact Me</h1>
       </div>
-      <div className="max-w-5xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-12">
+      <div className="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-16">
+        {/* Info */}
         <div>
-          <h2 className="font-serif text-2xl font-bold mb-6">Let us Connect</h2>
-          <p className="text-gray-500 mb-8">Whether you are buying, selling, or just exploring your options, I am here to help. Reach out anytime.</p>
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '2rem' }}>REACH OUT</p>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.2rem', color: '#F5EDD6', fontWeight: 300, letterSpacing: '0.05em', marginBottom: '1rem' }}>
+            Let Us Connect
+          </h2>
+          <div className="gold-line mb-8" />
+          <p style={{ color: '#555', fontSize: '0.8rem', lineHeight: '2', fontWeight: 300, marginBottom: '2.5rem' }}>
+            Whether you are buying, selling, or exploring your options — I am here to provide expert guidance every step of the way.
+          </p>
           <div className="space-y-5">
-            <div className="flex gap-3 items-center"><Phone size={20} className="text-yellow-500" /><span>+1 (403) 000-0000</span></div>
-            <div className="flex gap-3 items-center"><Mail size={20} className="text-yellow-500" /><span>kice@kicetanha.com</span></div>
-            <div className="flex gap-3 items-start"><MapPin size={20} className="text-yellow-500 mt-1" /><span>Calgary, Alberta, Canada</span></div>
+            {[
+              { Icon: Phone, text: '+1 (403) 000-0000' },
+              { Icon: Mail, text: 'kice@kicetanha.com' },
+              { Icon: MapPin, text: 'Calgary, Alberta, Canada' },
+            ].map(({ Icon, text }) => (
+              <div key={text} className="flex gap-4 items-center">
+                <div style={{ border: '1px solid #2A2A2A', padding: '10px' }}>
+                  <Icon size={14} style={{ color: '#C9A84C' }} />
+                </div>
+                <span style={{ color: '#666', fontSize: '0.8rem', letterSpacing: '0.05em' }}>{text}</span>
+              </div>
+            ))}
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-8 space-y-4">
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="card-dark p-8 space-y-5">
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1">I am a...</label>
-            <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })}
-              className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500">
+            <label style={{ fontFamily: 'Montserrat', fontSize: '0.55rem', letterSpacing: '0.2em', color: '#C9A84C', display: 'block', marginBottom: '0.5rem' }}>I AM A...</label>
+            <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })} className="input-dark" style={{ fontSize: '0.75rem' }}>
               <option value="buyer">Buyer</option>
               <option value="seller">Seller</option>
-              <option value="general">Just inquiring</option>
+              <option value="general">Just Inquiring</option>
             </select>
           </div>
           {[
-            { label: 'Full Name', key: 'name', type: 'text', required: true },
-            { label: 'Email', key: 'email', type: 'email', required: true },
-            { label: 'Phone (optional)', key: 'phone', type: 'tel', required: false },
+            { label: 'FULL NAME', key: 'name', type: 'text', required: true },
+            { label: 'EMAIL ADDRESS', key: 'email', type: 'email', required: true },
+            { label: 'PHONE (OPTIONAL)', key: 'phone', type: 'tel', required: false },
           ].map(({ label, key, type, required }) => (
             <div key={key}>
-              <label className="text-sm font-medium text-gray-700 block mb-1">{label}</label>
+              <label style={{ fontFamily: 'Montserrat', fontSize: '0.55rem', letterSpacing: '0.2em', color: '#C9A84C', display: 'block', marginBottom: '0.5rem' }}>{label}</label>
               <input type={type} required={required} value={(form as any)[key]}
                 onChange={e => setForm({ ...form, [key]: e.target.value })}
-                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500" />
+                className="input-dark" style={{ fontSize: '0.75rem' }} />
             </div>
           ))}
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1">Message</label>
+            <label style={{ fontFamily: 'Montserrat', fontSize: '0.55rem', letterSpacing: '0.2em', color: '#C9A84C', display: 'block', marginBottom: '0.5rem' }}>MESSAGE</label>
             <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
-              className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500 resize-none" />
+              className="input-dark resize-none" style={{ fontSize: '0.75rem' }} />
           </div>
-          <button type="submit" disabled={loading} className="btn-primary w-full">
-            {loading ? 'Sending...' : 'Send Message'}
+          <button type="submit" disabled={loading} className="btn-primary w-full" style={{ fontSize: '0.6rem' }}>
+            {loading ? 'SENDING...' : 'SEND MESSAGE'}
           </button>
         </form>
       </div>

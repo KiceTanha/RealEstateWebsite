@@ -9,56 +9,66 @@ const mockListings = [
 
 export default function ListingsPage() {
   return (
-    <div className="pt-16 min-h-screen bg-gray-50">
-      <div className="bg-[#0f0f1a] text-white py-14 px-4 text-center">
-        <h1 className="font-serif text-4xl font-bold mb-2">Calgary Listings</h1>
-        <p className="text-gray-400">Find your perfect property</p>
+    <div className="pt-24 min-h-screen" style={{ background: '#0A0A0A' }}>
+      {/* Header */}
+      <div className="py-20 px-6 text-center" style={{ borderBottom: '1px solid #2A2A2A' }}>
+        <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>PROPERTIES</p>
+        <h1 className="section-title">Calgary Listings</h1>
       </div>
-      <div className="bg-white shadow-sm border-b sticky top-16 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row gap-3">
+
+      {/* Search Bar */}
+      <div className="sticky top-16 z-10" style={{ background: '#0f0f0f', borderBottom: '1px solid #2A2A2A' }}>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative">
-            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2" style={{ color: '#C9A84C' }} />
             <input type="text" placeholder="Search by address, city, or MLS#"
-              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-yellow-500" />
+              className="input-dark pl-10" style={{ fontSize: '0.75rem', letterSpacing: '0.05em' }} />
           </div>
-          <select className="border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500 text-sm">
+          <select className="input-dark" style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}>
             <option>All Types</option>
             <option>House</option>
             <option>Condo</option>
             <option>Townhouse</option>
             <option>Land</option>
           </select>
-          <select className="border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500 text-sm">
+          <select className="input-dark" style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}>
             <option>Any Price</option>
             <option>Under $500K</option>
             <option>$500K–$750K</option>
             <option>$750K–$1M</option>
             <option>$1M+</option>
           </select>
-          <button className="flex items-center gap-2 border rounded-lg px-4 py-2 text-sm hover:bg-gray-50">
-            <SlidersHorizontal size={16} /> Filters
+          <button className="btn-outline flex items-center gap-2" style={{ fontSize: '0.6rem', whiteSpace: 'nowrap' }}>
+            <SlidersHorizontal size={12} /> Filters
           </button>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto px-4 py-10">
-        <p className="text-sm text-gray-500 mb-6">{mockListings.length} properties found</p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {/* Grid */}
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <p style={{ color: '#444', fontSize: '0.65rem', letterSpacing: '0.2em', marginBottom: '2rem' }}>{mockListings.length} PROPERTIES FOUND</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockListings.map(p => (
             <Link key={p.id} href={`/listings/${p.id}`}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
-              <div className="relative h-52 overflow-hidden">
+              className="card-dark group hover:border-yellow-700 transition-all duration-500 overflow-hidden block">
+              <div className="relative h-56 overflow-hidden">
                 <img src={p.image} alt={p.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <span className="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-semibold px-2 py-1 rounded">For Sale</span>
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)' }} />
+                <span className="absolute top-4 left-4" style={{ background: '#C9A84C', color: '#0A0A0A', fontSize: '0.55rem', letterSpacing: '0.2em', padding: '4px 10px', fontFamily: 'Montserrat', fontWeight: 600 }}>
+                  FOR SALE
+                </span>
               </div>
-              <div className="p-5">
-                <h3 className="font-serif text-lg font-bold mb-1">{p.title}</h3>
-                <p className="text-2xl font-bold text-yellow-600 mb-2">${p.price.toLocaleString()}</p>
-                <p className="text-sm text-gray-500 mb-3">{p.address}, {p.city}</p>
-                <div className="flex gap-4 text-sm text-gray-600 border-t pt-3">
-                  <span>{p.bedrooms} beds</span>
-                  <span>{p.bathrooms} baths</span>
-                  <span>{p.sqft.toLocaleString()} sqft</span>
+              <div className="p-6">
+                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#F5EDD6', letterSpacing: '0.05em', marginBottom: '0.5rem', fontWeight: 300 }}>{p.title}</h3>
+                <p style={{ fontSize: '1.6rem', color: '#C9A84C', fontFamily: 'Cormorant Garamond, serif', fontWeight: 300, marginBottom: '0.5rem' }}>
+                  ${p.price.toLocaleString()}
+                </p>
+                <p style={{ color: '#555', fontSize: '0.7rem', letterSpacing: '0.05em', marginBottom: '1rem' }}>{p.address}, {p.city}</p>
+                <div className="flex gap-6" style={{ borderTop: '1px solid #2A2A2A', paddingTop: '1rem' }}>
+                  {[`${p.bedrooms} Beds`, `${p.bathrooms} Baths`, `${p.sqft.toLocaleString()} sqft`].map(s => (
+                    <span key={s} style={{ color: '#555', fontSize: '0.65rem', letterSpacing: '0.1em' }}>{s}</span>
+                  ))}
                 </div>
               </div>
             </Link>

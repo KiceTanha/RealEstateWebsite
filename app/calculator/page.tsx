@@ -14,32 +14,39 @@ function MortgageCalculator() {
   const fmt = (n: number) => isNaN(n) ? '—' : Math.round(n).toLocaleString();
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-8">
-      <h2 className="font-serif text-2xl font-bold mb-6">Mortgage Calculator</h2>
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-4">
+    <div className="card-dark p-10">
+      <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>CALCULATOR</p>
+      <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#F5EDD6', fontWeight: 300, letterSpacing: '0.05em', marginBottom: '2rem' }}>Mortgage Calculator</h2>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-5">
           {[
-            { label: 'Home Price ($)', value: price, setter: setPrice, step: 10000 },
-            { label: 'Down Payment ($)', value: down, setter: setDown, step: 5000 },
-            { label: 'Interest Rate (%)', value: rate, setter: setRate, step: 0.1 },
-            { label: 'Amortization (years)', value: years, setter: setYears, step: 1 },
+            { label: 'HOME PRICE ($)', value: price, setter: setPrice, step: 10000 },
+            { label: 'DOWN PAYMENT ($)', value: down, setter: setDown, step: 5000 },
+            { label: 'INTEREST RATE (%)', value: rate, setter: setRate, step: 0.1 },
+            { label: 'AMORTIZATION (YEARS)', value: years, setter: setYears, step: 1 },
           ].map(({ label, value, setter, step }) => (
             <div key={label}>
-              <label className="text-sm font-medium text-gray-700 block mb-1">{label}</label>
-              <input type="number" value={value} onChange={e => setter(Number(e.target.value))} step={step}
-                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500" />
+              <label style={{ fontFamily: 'Montserrat', fontSize: '0.55rem', letterSpacing: '0.2em', color: '#C9A84C', display: 'block', marginBottom: '0.5rem' }}>{label}</label>
+              <input type="number" value={value} onChange={e => setter(Number(e.target.value))} step={step} className="input-dark" />
             </div>
           ))}
         </div>
-        <div className="bg-yellow-50 rounded-xl p-6 flex flex-col justify-center gap-4">
+        <div style={{ background: '#080808', border: '1px solid #2A2A2A', padding: '2rem' }} className="flex flex-col justify-center gap-6">
           <div>
-            <p className="text-sm text-gray-500">Monthly Payment</p>
-            <p className="font-serif text-4xl font-bold text-yellow-600">${fmt(monthly)}</p>
+            <p style={{ color: '#555', fontSize: '0.6rem', letterSpacing: '0.2em', marginBottom: '0.5rem' }}>MONTHLY PAYMENT</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3.5rem', color: '#C9A84C', fontWeight: 300 }}>${fmt(monthly)}</p>
           </div>
-          <div className="border-t pt-4 space-y-2 text-sm">
-            <div className="flex justify-between"><span className="text-gray-500">Loan Amount</span><span className="font-semibold">${principal.toLocaleString()}</span></div>
-            <div className="flex justify-between"><span className="text-gray-500">Down Payment</span><span className="font-semibold">{((down / price) * 100).toFixed(1)}%</span></div>
-            <div className="flex justify-between"><span className="text-gray-500">Total Interest</span><span className="font-semibold">${fmt((monthly * n) - principal)}</span></div>
+          <div style={{ borderTop: '1px solid #2A2A2A', paddingTop: '1.5rem' }} className="space-y-3">
+            {[
+              { label: 'LOAN AMOUNT', value: `$${principal.toLocaleString()}` },
+              { label: 'DOWN PAYMENT', value: `${((down / price) * 100).toFixed(1)}%` },
+              { label: 'TOTAL INTEREST', value: `$${fmt((monthly * n) - principal)}` },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex justify-between">
+                <span style={{ color: '#444', fontSize: '0.6rem', letterSpacing: '0.15em' }}>{label}</span>
+                <span style={{ color: '#888', fontSize: '0.75rem' }}>{value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -66,37 +73,43 @@ function ProformaCalculator() {
   const fmt = (n: number) => isNaN(n) ? '—' : Math.round(n).toLocaleString();
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-8" id="proforma">
-      <h2 className="font-serif text-2xl font-bold mb-2">Investment Proforma</h2>
-      <p className="text-gray-500 text-sm mb-6">Analyze the return on an investment property</p>
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-4">
+    <div className="card-dark p-10" id="proforma">
+      <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>INVESTMENT ANALYSIS</p>
+      <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#F5EDD6', fontWeight: 300, letterSpacing: '0.05em', marginBottom: '2rem' }}>Proforma Calculator</h2>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-5">
           {[
-            { label: 'Purchase Price ($)', value: purchasePrice, setter: setPurchasePrice, step: 10000 },
-            { label: 'Monthly Rent ($)', value: monthlyRent, setter: setMonthlyRent, step: 50 },
-            { label: 'Monthly Expenses ($)', value: expenses, setter: setExpenses, step: 50 },
-            { label: 'Down Payment (%)', value: downPct, setter: setDownPct, step: 1 },
-            { label: 'Interest Rate (%)', value: rate, setter: setRate, step: 0.1 },
+            { label: 'PURCHASE PRICE ($)', value: purchasePrice, setter: setPurchasePrice, step: 10000 },
+            { label: 'MONTHLY RENT ($)', value: monthlyRent, setter: setMonthlyRent, step: 50 },
+            { label: 'MONTHLY EXPENSES ($)', value: expenses, setter: setExpenses, step: 50 },
+            { label: 'DOWN PAYMENT (%)', value: downPct, setter: setDownPct, step: 1 },
+            { label: 'INTEREST RATE (%)', value: rate, setter: setRate, step: 0.1 },
           ].map(({ label, value, setter, step }) => (
             <div key={label}>
-              <label className="text-sm font-medium text-gray-700 block mb-1">{label}</label>
-              <input type="number" value={value} onChange={e => setter(Number(e.target.value))} step={step}
-                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:border-yellow-500" />
+              <label style={{ fontFamily: 'Montserrat', fontSize: '0.55rem', letterSpacing: '0.2em', color: '#C9A84C', display: 'block', marginBottom: '0.5rem' }}>{label}</label>
+              <input type="number" value={value} onChange={e => setter(Number(e.target.value))} step={step} className="input-dark" />
             </div>
           ))}
         </div>
-        <div className="bg-[#0f0f1a] text-white rounded-xl p-6 flex flex-col justify-center gap-4">
+        <div style={{ background: '#080808', border: '1px solid #2A2A2A', padding: '2rem' }} className="flex flex-col justify-center gap-6">
           <div>
-            <p className="text-sm text-gray-400">Monthly Cash Flow</p>
-            <p className={`font-serif text-4xl font-bold ${cashFlow >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            <p style={{ color: '#555', fontSize: '0.6rem', letterSpacing: '0.2em', marginBottom: '0.5rem' }}>MONTHLY CASH FLOW</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3.5rem', fontWeight: 300, color: cashFlow >= 0 ? '#4ade80' : '#f87171' }}>
               ${fmt(cashFlow)}
             </p>
           </div>
-          <div className="border-t border-gray-700 pt-4 space-y-2 text-sm">
-            <div className="flex justify-between"><span className="text-gray-400">Cap Rate</span><span className="font-semibold text-yellow-400">{capRate.toFixed(2)}%</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Cash-on-Cash</span><span className="font-semibold text-yellow-400">{cashOnCash.toFixed(2)}%</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">NOI (annual)</span><span className="font-semibold">${noi.toLocaleString()}</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Mortgage/mo</span><span className="font-semibold">${fmt(mortgage)}</span></div>
+          <div style={{ borderTop: '1px solid #2A2A2A', paddingTop: '1.5rem' }} className="space-y-3">
+            {[
+              { label: 'CAP RATE', value: `${capRate.toFixed(2)}%` },
+              { label: 'CASH-ON-CASH', value: `${cashOnCash.toFixed(2)}%` },
+              { label: 'NOI (ANNUAL)', value: `$${noi.toLocaleString()}` },
+              { label: 'MORTGAGE/MO', value: `$${fmt(mortgage)}` },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex justify-between">
+                <span style={{ color: '#444', fontSize: '0.6rem', letterSpacing: '0.15em' }}>{label}</span>
+                <span style={{ color: '#C9A84C', fontSize: '0.75rem' }}>{value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -106,12 +119,12 @@ function ProformaCalculator() {
 
 export default function CalculatorPage() {
   return (
-    <div className="pt-16 min-h-screen bg-gray-50">
-      <div className="bg-[#0f0f1a] text-white py-14 px-4 text-center">
-        <h1 className="font-serif text-4xl font-bold mb-2">Financial Calculators</h1>
-        <p className="text-gray-400">Make informed decisions with the right numbers</p>
+    <div className="pt-24 min-h-screen" style={{ background: '#0A0A0A' }}>
+      <div className="py-20 px-6 text-center" style={{ borderBottom: '1px solid #2A2A2A' }}>
+        <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>TOOLS</p>
+        <h1 className="section-title">Financial Calculators</h1>
       </div>
-      <div className="max-w-4xl mx-auto px-4 py-12 space-y-10">
+      <div className="max-w-4xl mx-auto px-6 py-16 space-y-10">
         <MortgageCalculator />
         <ProformaCalculator />
       </div>

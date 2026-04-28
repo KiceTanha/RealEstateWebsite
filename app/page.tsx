@@ -1,81 +1,141 @@
 import Link from 'next/link';
-import { Search, Home, TrendingUp, Users, Calculator, Calendar } from 'lucide-react';
+import { Search, Home, TrendingUp, Users, Calculator, Calendar, ChevronDown } from 'lucide-react';
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen bg-[#0f0f1a] flex items-center justify-center overflow-hidden pt-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.15 }} />
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <p className="text-yellow-400 font-semibold tracking-widest text-sm uppercase mb-4">Calgary Real Estate Expert</p>
-          <h1 className="font-serif text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Find Your <span className="text-yellow-400">Dream Home</span> in Calgary
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%)' }} />
+
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '2rem' }}>
+            CALGARY LUXURY REAL ESTATE
+          </p>
+          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(3rem, 8vw, 7rem)', fontWeight: 300, color: '#F5EDD6', lineHeight: 1.05, letterSpacing: '0.05em', marginBottom: '2rem' }}>
+            Extraordinary Homes<br />
+            <em style={{ color: '#C9A84C', fontStyle: 'italic' }}>for Extraordinary Lives</em>
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            Expert guidance for buyers and sellers. Local knowledge, proven results, personalized service.
+          <div className="gold-line mx-auto mb-8" style={{ width: '60px' }} />
+          <p style={{ color: '#aaa', fontSize: '0.85rem', letterSpacing: '0.15em', marginBottom: '3rem', fontWeight: 300 }}>
+            Expert guidance for buyers & sellers across Calgary's finest communities
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/listings" className="btn-primary text-lg px-8 py-4">Browse Listings</Link>
-            <Link href="/book-a-call" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold text-lg px-8 py-4 rounded transition-all duration-200">Book a Free Call</Link>
+            <Link href="/listings" className="btn-primary">Explore Listings</Link>
+            <Link href="/book-a-call" className="btn-outline">Book a Consultation</Link>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <ChevronDown size={16} style={{ color: '#C9A84C' }} />
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="gold-divider" />
+
+      {/* Buyer / Seller */}
+      <section className="py-28" style={{ background: '#0A0A0A' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>YOUR JOURNEY STARTS HERE</p>
+            <h2 className="section-title">How Can I Help You?</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                href: '/listings',
+                label: 'I Am Buying',
+                desc: 'Discover exceptional properties across Calgary. From first homes to luxury estates, find the one that speaks to you.',
+                cta: 'View Listings',
+                icon: Home,
+              },
+              {
+                href: '/contact?type=seller',
+                label: 'I Am Selling',
+                desc: 'Achieve the best possible outcome for your property with market expertise, premium marketing, and white-glove service.',
+                cta: 'Get a Valuation',
+                icon: TrendingUp,
+              },
+            ].map(({ href, label, desc, cta, icon: Icon }) => (
+              <div key={href} className="card-dark p-12 group hover:border-yellow-700 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-0 group-hover:h-full transition-all duration-500" style={{ background: '#C9A84C' }} />
+                <Icon size={28} style={{ color: '#C9A84C', marginBottom: '1.5rem' }} />
+                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#F5EDD6', letterSpacing: '0.05em', marginBottom: '1rem', fontWeight: 300 }}>{label}</h3>
+                <p style={{ color: '#666', fontSize: '0.8rem', lineHeight: '1.9', marginBottom: '2rem', fontWeight: 300 }}>{desc}</p>
+                <Link href={href} className="btn-primary" style={{ fontSize: '0.6rem' }}>{cta}</Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Buyer or Seller */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="section-title mb-4">How Can I Help You?</h2>
-          <p className="text-gray-500 mb-12">Whether you are buying your first home or selling for top dollar, I have got you covered.</p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="border-2 border-yellow-200 rounded-2xl p-10 hover:border-yellow-500 hover:shadow-lg transition-all">
-              <Home size={48} className="text-yellow-500 mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-bold mb-3">I am a Buyer</h3>
-              <p className="text-gray-500 mb-6">Explore available listings, get mortgage estimates, and book a consultation to find your perfect home.</p>
-              <Link href="/listings" className="btn-primary">View Listings</Link>
-            </div>
-            <div className="border-2 border-yellow-200 rounded-2xl p-10 hover:border-yellow-500 hover:shadow-lg transition-all">
-              <TrendingUp size={48} className="text-yellow-500 mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-bold mb-3">I am a Seller</h3>
-              <p className="text-gray-500 mb-6">Get a free home evaluation, see what your property could sell for, and let me handle the rest.</p>
-              <Link href="/contact?type=seller" className="btn-primary">Get Home Value</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="gold-divider" />
 
       {/* Tools */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="section-title mb-4">Tools to Help You</h2>
-          <p className="text-gray-500 mb-12">Everything you need to make smart real estate decisions.</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <section className="py-28" style={{ background: '#080808' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1rem' }}>RESOURCES</p>
+            <h2 className="section-title">Tools & Insights</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
               { href: '/calculator', icon: Calculator, label: 'Mortgage Calculator', desc: 'Estimate your monthly payments' },
-              { href: '/calculator#proforma', icon: TrendingUp, label: 'Proforma Calculator', desc: 'Analyze investment returns' },
-              { href: '/listings', icon: Search, label: 'Search Listings', desc: 'Find properties that match' },
+              { href: '/calculator#proforma', icon: TrendingUp, label: 'Investment Proforma', desc: 'Analyze property returns' },
+              { href: '/listings', icon: Search, label: 'Search Listings', desc: 'Browse available properties' },
               { href: '/community', icon: Users, label: 'Communities', desc: 'Explore Calgary neighbourhoods' },
               { href: '/book-a-call', icon: Calendar, label: 'Book a Call', desc: 'Free 30-min consultation' },
-              { href: '/about', icon: Home, label: 'About Me', desc: 'Your local market expert' },
+              { href: '/about', icon: Home, label: 'About Kice', desc: 'Your trusted local expert' },
             ].map(({ href, icon: Icon, label, desc }) => (
               <Link key={href} href={href}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all text-left">
-                <Icon size={32} className="text-yellow-500 mb-3" />
-                <h4 className="font-semibold text-gray-900 mb-1">{label}</h4>
-                <p className="text-sm text-gray-500">{desc}</p>
+                className="card-dark p-6 hover:border-yellow-700 transition-all duration-300 group">
+                <Icon size={20} style={{ color: '#C9A84C', marginBottom: '1rem' }} />
+                <h4 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#F5EDD6', marginBottom: '0.4rem', letterSpacing: '0.05em' }}>{label}</h4>
+                <p style={{ color: '#555', fontSize: '0.7rem', letterSpacing: '0.05em', fontWeight: 300 }}>{desc}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
+      <div className="gold-divider" />
+
+      {/* Stats */}
+      <section className="py-20" style={{ background: '#0A0A0A' }}>
+        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: '100+', label: 'Homes Sold' },
+            { value: '150+', label: 'Happy Clients' },
+            { value: '5+', label: 'Years Experience' },
+            { value: '$50M+', label: 'In Transactions' },
+          ].map(({ value, label }) => (
+            <div key={label}>
+              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.8rem', color: '#C9A84C', fontWeight: 300, letterSpacing: '0.05em' }}>{value}</p>
+              <div className="gold-line mx-auto my-2" />
+              <p style={{ color: '#555', fontSize: '0.6rem', letterSpacing: '0.25em', fontWeight: 400 }}>{label.toUpperCase()}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="gold-divider" />
+
       {/* CTA */}
-      <section className="py-20 bg-[#0f0f1a] text-white text-center">
-        <div className="max-w-2xl mx-auto px-4">
-          <h2 className="font-serif text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-gray-400 mb-8">Book a free, no-obligation call and lets talk about your real estate goals.</p>
-          <Link href="/book-a-call" className="btn-primary text-lg px-10 py-4">Book Your Free Call</Link>
+      <section className="py-28 text-center relative overflow-hidden" style={{ background: '#080808' }}>
+        <div className="absolute inset-0 opacity-5"
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="relative z-10 max-w-2xl mx-auto px-6">
+          <p style={{ fontFamily: 'Montserrat', fontSize: '0.6rem', letterSpacing: '0.4em', color: '#C9A84C', marginBottom: '1.5rem' }}>BEGIN YOUR JOURNEY</p>
+          <h2 className="section-title mb-6">Ready to Find Your Dream Home?</h2>
+          <div className="gold-line mx-auto mb-8" />
+          <p style={{ color: '#666', fontSize: '0.8rem', letterSpacing: '0.1em', marginBottom: '2.5rem', fontWeight: 300 }}>
+            Book a complimentary consultation and let's discuss your real estate goals.
+          </p>
+          <Link href="/book-a-call" className="btn-primary">Book Your Free Consultation</Link>
         </div>
       </section>
     </>
