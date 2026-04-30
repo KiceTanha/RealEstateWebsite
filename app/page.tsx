@@ -8,7 +8,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <iframe
-            src="https://www.youtube.com/embed/KbEdnRTbnwc?autoplay=1&mute=1&loop=1&playlist=KbEdnRTbnwc&controls=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0"
+            src="https://www.youtube.com/embed/jkndHmbN9mc?autoplay=1&mute=1&loop=1&playlist=jkndHmbN9mc&controls=0&showinfo=0&rel=0&modestbranding=1&cc_load_policy=0&iv_load_policy=3&disablekb=1"
             title="Hero background video"
             allow="autoplay; encrypted-media"
             tabIndex={-1}
